@@ -4,6 +4,7 @@ import pygame
 from gameObject import GameObject
 from spike import Spike
 from player import Player
+from winningPlatform import WinningPlatform
 
 pygame.init()
 screen = pygame.display.set_mode([1200, 800])
@@ -39,6 +40,9 @@ for line in file.readlines():
     elif t == "p":
         new_gameobject = GameObject(x, y, w, h)
         gameObjects.append(new_gameobject)
+    elif t == "w":
+        new_gameobject = WinningPlatform(x, y, w, h)
+        gameObjects.append(new_gameobject)  
     
 print(gameObjects)
 
@@ -75,7 +79,8 @@ while running:
     player.vy += 10
 
     # playe.x = player.vx * dt
-    player.move(dt, gameObjects)
+    if player.move(dt, gameObjects):
+        running = False
 
     if not player.moving_x:
         if player.vx > 0:

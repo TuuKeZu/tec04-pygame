@@ -1,5 +1,7 @@
 import pygame
 
+
+
 class GameObject():
     
     
@@ -7,7 +9,7 @@ class GameObject():
         self.rect = pygame.Rect(x, y, w, h)
         
     def handle_collision(self):
-        pass     
+        return False 
         
     def render(self, screen):
         pygame.draw.rect(screen, (255, 0, 0), self.rect)
